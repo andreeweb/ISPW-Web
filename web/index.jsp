@@ -6,15 +6,22 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<HTML>
-<BODY>
+<hmtl>
+<head>
+  <title>Dashboard</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+<body>
 <%
-  // This is a scriptlet.  Notice that the "date"
-  // variable we declare here is available in the
-  // embedded expression later on.
-  System.out.println( "Evaluating date now" );
-  java.util.Date date = new java.util.Date();
+
+  // Check if this is new comer on your Webpage.
+  if (session.getAttribute("login") == null){
+    // New location to be redirected
+    response.sendRedirect("login.jsp");
+  }
+
 %>
-Hello!  The time is now <%= date %>
-</BODY>
-</HTML>
+
+</body>
+</hmtl>

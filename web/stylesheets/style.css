@@ -37,9 +37,10 @@ a {
 }
 
 #login {
-  width: 30%;	
+  width: 30%;
   margin-top: 10%;
   margin-left: 35%;
+    text-align: center;
 }
 
 #top-bar{
@@ -63,7 +64,6 @@ header {
   border-style: solid;
   border-width: 1px;
   border-color: gray;
-	height: 23px;
   padding: 5px 5px 5px 5px;
   margin-bottom: 30px;
   font-size: 11pt;
@@ -71,7 +71,7 @@ header {
   cursor:pointer;
   -webkit-border-radius: 5px;
   border-radius: 5px; 
-  width: 80%;
+  width: 83%;
 }
 
 .submit-login {
