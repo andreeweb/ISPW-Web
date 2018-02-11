@@ -32,27 +32,21 @@ public class FileUserDao implements UserDao{
 
             ArrayList<User> list = (ArrayList<User>) in.readObject();
 
-            for(int i=0; i<list.size(); i++){
+            for (User aList : list) {
 
-                user = list.get(i);
+                user = aList;
 
-                if (Objects.equals(user.getUsername(), username) && Objects.equals(user.getPassword(), password)){
-
-                    System.out.println(user.toString());
+                if (Objects.equals(user.getUsername(), username) && Objects.equals(user.getPassword(), password)) {
                     return user;
                 }
             }
 
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             throw new DaoException(e.getMessage());
 
-        } catch (ClassNotFoundException e) {
-            throw new DaoException(e.getMessage());
         }
 
-        if (user == null)
-            throw new DaoException("User not found");
-
-        return null;
+        // if reach this line user was not found
+        throw new DaoException("User not found");
     }
 }

@@ -45,8 +45,6 @@ public class SecretaryViewController {
     @FXML
     private void initialize() {
 
-        // Listen for selection changes and show the person details when changed.
-        issueTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showIssueDetails(newValue));
     }
 
     /**
@@ -75,12 +73,4 @@ public class SecretaryViewController {
 
     }
 
-    /**
-     *
-     * @param issueBean
-     */
-    public void showIssueDetails(IssueBean issueBean){
-
-        SceneManager.getSingletonInstance().showSecretaryDetailView(issueBean);
-    }
 }

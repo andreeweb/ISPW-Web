@@ -55,11 +55,6 @@ public class SecretaryViewDetailController {
     private void initialize() {
 
         confirmButton.setOnAction(this::confirmButtonAction);
-        discardButton.setOnAction(this::discardButtonAction);
-    }
-
-    private void discardButtonAction(ActionEvent actionEvent) {
-        SceneManager.getSingletonInstance().showSecretaryView();
     }
 
     private void confirmButtonAction(ActionEvent actionEvent) {
@@ -74,7 +69,6 @@ public class SecretaryViewDetailController {
         try {
 
             controller.updateIssue(bean);
-            SceneManager.getSingletonInstance().showSecretaryView();
 
         } catch (DaoException e) {
             e.printStackTrace();
