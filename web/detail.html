@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="stylesheets/styles.css">
+	<script src="script/main.js"></script>
+</head>
+<body>
+	
+	<header>
+	   <img id="logo-top" src="images/elephant-alone-w64.png" alt="Elephant App">
+	</header>
+
+	<div class="container">
+
+		<div id="top-bar">
+			<table id="table-top">
+				<tr>
+					<td align="left">Benvenuto!</td>
+					<td align="right">
+						<form>
+						  <input class="submit-exit" type="submit" onclick="alert('Hello World!')" value="Esci">
+						</form>	
+					</td>
+				</tr>
+			</table>
+		</div>
+
+
+		<div id="main">
+			
+			<div id="left-box">
+				
+				<div id="detail">
+				
+					<div class="block">
+						<h3>Descrizione</h3> 
+						<textarea id="desc-textarea"></textarea>
+					</div>
+					
+					<div class="block">
+						<div class="left">
+							<h4>Caratteristica</h4>
+						</div>
+						<div class="right">
+							<h4>Aula</h4>
+						</div>
+					</div>
+					
+					<div class="block">
+						<div class="left">
+							<p>Lavagna in Ardesia</p>
+						</div>
+						<div class="right">
+							<p>Aula A1</p>
+						</div>
+					</div>
+
+					<div class="block">
+						<div class="full">
+							<h4>Seleziona nuovo stato</h4>
+						</div>
+					</div>
+
+					<div class="block">
+						<div class="full">
+							<select id="soflow">
+							  <option value="volvo">Volvo</option>
+							  <option value="saab">Saab</option>
+							  <option value="mercedes">Mercedes</option>
+							  <option value="audi">Audi</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="block">
+						<div class="full">
+							<form>
+							  <input class="long-button-blue" type="submit" onclick="alert('Hello World!')" value="Conferma">
+							  <input class="long-button-red" type="submit" onclick="alert('Hello World!')" value="Annulla">
+							</form>	
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		  	<div id="right-box">
+		  		
+		  		<div id="detail">
+					
+					<h3>Storico guasto</h3>
+					
+					<div id="issues_list">
+						
+						<div class="table" id="table-story">
+						
+							<div class="row header blue">
+							  <div class="cell">
+							    Stato
+							  </div>
+							  <div class="cell">
+							    Data
+							  </div>
+							</div>
+
+							<div class="row">
+							  <div class="cell" data-title="Username">
+							    NEW
+							  </div>
+							  <div class="cell" data-title="Email">
+							    07/01/2018 - 19:20
+							  </div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+		  	</div>
+
+		</div>
+
+	</div>
+
+	<footer>Copyright &copy; Andrea Cerra ISPW 2017/2018</footer>
+
+</body>
+</html>
