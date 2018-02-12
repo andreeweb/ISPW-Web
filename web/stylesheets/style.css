@@ -1,127 +1,115 @@
 body{
-  font-family: Arial,Helvetica Neue,Helvetica,sans-seri;
-  background-color: #F4F4F4;
-  margin: 0;
-  padding: 0;
+    font-family: Arial,Helvetica Neue,Helvetica,sans-seri;
+    background-color: #F4F4F4;
+    margin: 0;
+    padding: 0;
 }
-
 h3 {
-  color: #0C3869;
+    color: #0C3869;
 }
-
 h4 {
-  color: #0C3869;
+    color: #0C3869;
 }
-
+.h4red {
+    color: red;
+}
 a {
-  color: #0C3869;
+    color: #0C3869;
 }
-
 #table-issue {
-  width: 100%;
+    width: 100%;
 }
-
 #table-top {
-  width: 100%;
-  background-color: #0C3869;
-  color: white;
+    width: 100%;
+    background-color: #0C3869;
+    color: white;
 }
-
 #table-top td {
-  padding: 0.5em;
+    padding: 0.5em;
 }
-
 #logo-top {
-  width: 40px;
-  height: 40px;
+    width: 40px;
+    height: 40px;
 }
-
 #login {
-  width: 30%;
-  margin-top: 10%;
-  margin-left: 35%;
+    width: 30%;
+    margin-top: 10%;
+    margin-left: 35%;
     text-align: center;
 }
-
 #top-bar{
-  border-top-width: 1px;
-  border-top-style: solid;
-  border-color: #004369;
-  width: 100%;
-  height: 50px;
-  background-color: #0C3869
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-color: #004369;
+    width: 100%;
+    height: 50px;
+    background-color: #0C3869
 }
-
 header {
-  padding: 0.5em;
-  color: white;
-  background-color: #0C3869;
-  clear: left;
-  text-align: center;
+    padding: 0.5em;
+    color: white;
+    background-color: #0C3869;
+    clear: left;
+    text-align: center;
 }
-
 .input-login {
-  border-style: solid;
-  border-width: 1px;
-  border-color: gray;
-  padding: 5px 5px 5px 5px;
-  margin-bottom: 30px;
-  font-size: 11pt;
-  color: #0C3869;
-  cursor:pointer;
-  -webkit-border-radius: 5px;
-  border-radius: 5px; 
-  width: 83%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+    padding: 5px 5px 5px 5px;
+    margin-bottom: 30px;
+    font-size: 11pt;
+    color: #0C3869;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    width: 83%;
 }
-
 .submit-login {
-	height: 35px;
-  padding: 5px 22px 5px 22px;
-  background:#0C3869; 
-  font-size: 11pt;
-  color: white;
-  border:0 none;
-  cursor:pointer;
-  -webkit-border-radius: 5px;
-  border-radius: 5px; 
-  width: 83%;
+    height: 35px;
+    padding: 5px 22px 5px 22px;
+    background:#0C3869;
+    font-size: 11pt;
+    color: white;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    width: 83%;
 }
-
 .submit-exit {
-  padding: 5px 22px 5px 22px;
-  background:#F4F4F4; 
-  font-size: 11pt;
-  color: #0C3869;
-  border:0 none;
-  cursor:pointer;
-  -webkit-border-radius: 5px;
-  border-radius: 5px; 
+    padding: 5px 22px 5px 22px;
+    background:#F4F4F4;
+    font-size: 11pt;
+    color: #0C3869;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
 }
-
-footer{ 
-  font-size: 10pt;
-  padding-top: 1em;
-  padding-bottom: 1em;
-  color: white;
-  background-color: #0C3869;
-  text-align: center;
-	bottom:0; 
-	width:100%;  
-  position: absolute;
+footer{
+    font-size: 10pt;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    color: white;
+    background-color: #0C3869;
+    text-align: center;
+    /*bottom:0;
+    */
+    width:100%;
+    position: absolute;
 }
-
 /* TAB VIEW */
-
 /* Style the tab */
 .tab {
     overflow: hidden;
-    /*border: 1px solid #ccc;*/
+    /*border: 1px solid #ccc;
+    */
     background-color: #F4F4F4;
     margin-top: 5px;
     margin-right: 11px;
     margin-left: 11px;
 }
-
 /* Style the buttons that are used to open the tab content */
 .tab button {
     background-color: inherit;
@@ -133,19 +121,17 @@ footer{
     transition: 0.3s;
     font-size: 11pt;
 }
-
 /* Change background color of buttons on hover */
 .tab button:hover {
     background-color: #ddd;
 }
-
 /* Create an active/current tablink class */
 .tab button.active {
     background-color: #0C3869;
     color: white;
-    /*margin-left: 12px;*/
+    /*margin-left: 12px;
+    */
 }
-
 /* Style the tab content */
 .tabcontent {
     display: none;
@@ -153,289 +139,283 @@ footer{
     border: 1px solid #ccc;
     border-top: none;
 }
-
 .tabcontent {
-    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+    animation: fadeEffect 1s;
+    /* Fading effect takes 1 second */
 }
-
 /* Go from zero to full opacity */
 @keyframes fadeEffect {
-    from {opacity: 0;}
-    to {opacity: 1;}
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
-
 @media screen and (max-width: 580px) {
-  body {
-    font-size: 16px;
-    line-height: 22px;
-  }
+    body {
+        font-size: 16px;
+        line-height: 22px;
+    }
 }
-
 .wrapper {
-  margin: 0 auto;
-  padding: 40px;
-  max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    max-width: 800px;
 }
-
 .table {
-  /*margin: 0 0 40px 0;*/
-  width: 100%;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  display: table;
+    /*margin: 0 0 40px 0;
+    */
+    width: 100%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    display: table;
 }
 @media screen and (max-width: 580px) {
-  .table {
-    display: block;
-  }
+    .table {
+        display: block;
+    }
 }
-
 .row {
-  display: table-row;
-  background: #f6f6f6;
+    display: table-row;
+    background: #f6f6f6;
 }
 .row:nth-of-type(odd) {
-  background: #e9e9e9;
+    background: #e9e9e9;
 }
 .row.header {
-  font-weight: 900;
-  color: #ffffff;
-  background: #ea6153;
+    font-weight: 900;
+    color: #ffffff;
+    background: #ea6153;
 }
 .row.blue {
-  background: #0C3869;
+    background: #0C3869;
 }
 @media screen and (max-width: 580px) {
-  
-  .row {
-    padding: 14px 0 7px;
-    display: block;
-  }
-  .row.header {
-    padding: 0;
-    height: 6px;
-  }
-  .row.header .cell {
-    display: none;
-  }
-  .row .cell {
-    margin-bottom: 10px;
-  }
-  .row .cell:before {
-    margin-bottom: 3px;
-    content: attr(data-title);
-    min-width: 98px;
-    font-size: 10px;
-    line-height: 10px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #969696;
-    display: block;
-  }
+    .row {
+        padding: 14px 0 7px;
+        display: block;
+    }
+    .row.header {
+        padding: 0;
+        height: 6px;
+    }
+    .row.header .cell {
+        display: none;
+    }
+    .row .cell {
+        margin-bottom: 10px;
+    }
+    .row .cell:before {
+        margin-bottom: 3px;
+        content: attr(data-title);
+        min-width: 98px;
+        font-size: 10px;
+        line-height: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #969696;
+        display: block;
+    }
 }
-
 .cell {
-  padding: 6px 12px;
-  display: table-cell;
+    padding: 6px 12px;
+    display: table-cell;
 }
 @media screen and (max-width: 580px) {
-  .cell {
-    padding: 2px 16px;
-    display: block;
-  }
+    .cell {
+        padding: 2px 16px;
+        display: block;
+    }
 }
-
-#main { 
+#main {
     width: 100%;
     margin: 0 auto;
 }
-
-#left-box  {
-    width: 60%;
+#left-box {
+    width: 55%;
     float: left;
+    padding-left: 38px;
 }
-
 #right-box {
     width: 40%;
     float: right;
 }
-
-#detail {
-  padding-left: 10px;
+.detail {
+    padding-left: 10px;
 }
-
 #story {
-  padding-left: 10px;
+    padding-left: 10px;
 }
-
 #desc-textarea {
-  width: 95%;
-  height: 200px;
+    width: 95%;
+    height: 200px;
+    font-size: 15px
 }
-
 #table-story {
-  width: 90%;
+    width: 90%;
 }
-
 .block {
-  width: 100%;
+    width: 100%;
 }
-
 .block .right{
-  width: 50%;
-  float:right;
+    width: 50%;
+    float:right;
 }
-
 .block .left{
-  width: 50%;
-  float:left;
+    width: 50%;
+    float:left;
 }
-
 .block .full{
-  width: 100%;
-  float:left;
+    width: 100%;
+    float:left;
 }
-
 /* -------------------- Select Box Styles: bavotasan.com Method (with special adaptations by ericrasch.com) */
 /* -------------------- Source: http://bavotasan.com/2011/style-select-box-using-only-css/ */
 .styled-select {
-   background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
-   height: 29px;
-   overflow: hidden;
-   width: 240px;
+    background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+    height: 29px;
+    overflow: hidden;
+    width: 240px;
 }
-
 .styled-select select {
-   background: transparent;
-   border: none;
-   font-size: 14px;
-   height: 29px;
-   padding: 5px; /* If you add too much padding here, the options won't show in IE */
-   width: 268px;
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    height: 29px;
+    padding: 5px;
+    /* If you add too much padding here, the options won't show in IE */
+    width: 268px;
 }
-
 .styled-select.slate {
-   background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
-   height: 34px;
-   width: 240px;
+    background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
+    height: 34px;
+    width: 240px;
 }
-
 .styled-select.slate select {
-   border: 1px solid #ccc;
-   font-size: 16px;
-   height: 34px;
-   width: 268px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    height: 34px;
+    width: 268px;
 }
-
 /* -------------------- Rounded Corners */
 .rounded {
-   -webkit-border-radius: 20px;
-   -moz-border-radius: 20px;
-   border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
 }
-
 .semi-square {
-   -webkit-border-radius: 5px;
-   -moz-border-radius: 5px;
-   border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
-
 /* -------------------- Colors: Background */
-.slate   { background-color: #ddd; }
-.green   { background-color: #779126; }
-.blue    { background-color: #3b8ec2; }
-.yellow  { background-color: #eec111; }
-.black   { background-color: #000; }
-
+.slate {
+    background-color: #ddd;
+}
+.green {
+    background-color: #779126;
+}
+.blue {
+    background-color: #3b8ec2;
+}
+.yellow {
+    background-color: #eec111;
+}
+.black {
+    background-color: #000;
+}
 /* -------------------- Colors: Text */
-.slate select   { color: #000; }
-.green select   { color: #fff; }
-.blue select    { color: #fff; }
-.yellow select  { color: #000; }
-.black select   { color: #fff; }
-
-
+.slate select {
+    color: #000;
+}
+.green select {
+    color: #fff;
+}
+.blue select {
+    color: #fff;
+}
+.yellow select {
+    color: #000;
+}
+.black select {
+    color: #fff;
+}
 /* -------------------- Select Box Styles: danielneumann.com Method */
 /* -------------------- Source: http://danielneumann.com/blog/how-to-style-dropdown-with-css-only/ */
 #mainselection select {
-   border: 0;
-   color: #EEE;
-   background: transparent;
-   font-size: 20px;
-   font-weight: bold;
-   padding: 2px 10px;
-   width: 378px;
-   *width: 350px;
-   *background: #58B14C;
-   -webkit-appearance: none;
+    border: 0;
+    color: #EEE;
+    background: transparent;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 2px 10px;
+    width: 378px;
+    *width: 350px;
+    *background: #58B14C;
+    -webkit-appearance: none;
 }
-
 #mainselection {
-   overflow:hidden;
-   width:350px;
-   -moz-border-radius: 9px 9px 9px 9px;
-   -webkit-border-radius: 9px 9px 9px 9px;
-   border-radius: 9px 9px 9px 9px;
-   box-shadow: 1px 1px 11px #330033;
-   background: #58B14C url("http://i62.tinypic.com/15xvbd5.png") no-repeat scroll 319px center;
+    overflow:hidden;
+    width:350px;
+    -moz-border-radius: 9px 9px 9px 9px;
+    -webkit-border-radius: 9px 9px 9px 9px;
+    border-radius: 9px 9px 9px 9px;
+    box-shadow: 1px 1px 11px #330033;
+    background: #58B14C url("http://i62.tinypic.com/15xvbd5.png") no-repeat scroll 319px center;
 }
-
-
 /* -------------------- Select Box Styles: stackoverflow.com Method */
 /* -------------------- Source: http://stackoverflow.com/a/5809186 */
 select#soflow, select#soflow-color {
-   -webkit-appearance: button;
-   -webkit-border-radius: 2px;
-   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-   -webkit-padding-end: 20px;
-   -webkit-padding-start: 2px;
-   -webkit-user-select: none;
-   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
-   background-position: 97% center;
-   background-repeat: no-repeat;
-   border: 1px solid #AAA;
-   color: #555;
-   font-size: inherit;
-   overflow: hidden;
-   padding: 5px 10px;
-   text-overflow: ellipsis;
-   white-space: nowrap;
-   width: 95%;
+    -webkit-appearance: button;
+    -webkit-border-radius: 2px;
+    -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    -webkit-padding-end: 20px;
+    -webkit-padding-start: 2px;
+    -webkit-user-select: none;
+    background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+    background-position: 97% center;
+    background-repeat: no-repeat;
+    border: 1px solid #AAA;
+    color: #555;
+    font-size: inherit;
+    overflow: hidden;
+    padding: 5px 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 95%;
 }
-
 select#soflow-color {
-   color: #fff;
-   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#779126, #779126 40%, #779126);
-   background-color: #779126;
-   -webkit-border-radius: 20px;
-   -moz-border-radius: 20px;
-   border-radius: 20px;
-   padding-left: 15px;
+    color: #fff;
+    background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#779126, #779126 40%, #779126);
+    background-color: #779126;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    padding-left: 15px;
 }
-
 .long-button-blue {
-  height: 35px;
-  padding: 5px 22px 5px 22px;
-  background:#0C3869; 
-  font-size: 11pt;
-  color: white;
-  border:0 none;
-  cursor:pointer;
-  -webkit-border-radius: 5px;
-  border-radius: 5px; 
-  width: 95%;
-  margin-top: 50px;
+    height: 35px;
+    padding: 5px 22px 5px 22px;
+    background:#0C3869;
+    font-size: 11pt;
+    color: white;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    width: 95%;
+    margin-top: 50px;
 }
-
 .long-button-red {
-  height: 35px;
-  padding: 5px 22px 5px 22px;
-  background:red; 
-  font-size: 11pt;
-  color: white;
-  border:0 none;
-  cursor:pointer;
-  -webkit-border-radius: 5px;
-  border-radius: 5px; 
-  width: 95%;
-  margin-top: 10px;
+    height: 35px;
+    padding: 5px 22px 5px 22px;
+    background:red;
+    font-size: 11pt;
+    color: white;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    width: 95%;
+    margin-top: 10px;
 }

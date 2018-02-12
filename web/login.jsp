@@ -25,7 +25,7 @@
             <h3>Benvenuto nell'app Gestione Eventi Elephant</h3>
             <h4>Effettua la login per entrare nel sistema</h4>
 
-            <form method="POST" action="controller/LoginViewController.jsp">
+            <form method="POST" action="controller/loginViewController.jsp">
                 <input class="input-login" type="text" name="username" placeholder="Username">
                 <br>
                 <input class="input-login" type="password" name="password" placeholder="Password">
@@ -36,16 +36,15 @@
             <%
                 if (session.getAttribute("error-msg") != null) {
                     %>
-                    <h4 style="color:red;"> <% out.print(session.getAttribute("error-msg")); %> </h4>
+                    <h4 class="h4red"> <% out.print(session.getAttribute("error-msg")); %> </h4>
                     <%
 
                     session.removeAttribute("error-msg");
+                    session.invalidate();
                 }
             %>
 
         </div>
-
-        <footer>Copyright &copy; Andrea Cerra ISPW 2017/2018</footer>
 
     </div>
 

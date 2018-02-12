@@ -1,4 +1,6 @@
-<%--
+<%@ page import="it.uniroma2.dicii.ispw.controller.IssueManagementController" %>
+<%@ page import="it.uniroma2.dicii.ispw.bean.IssueBean" %>
+<%@ page import="it.uniroma2.dicii.ispw.exception.DaoException" %><%--
   Created by IntelliJ IDEA.
   User: Andrea Cerra
 --%>
@@ -47,6 +49,17 @@
         <button class="tablinks" onclick="selectTab(event, 'info')">Informazioni</button>
     </div>
 
+    <%
+        if (session.getAttribute("error-msg") != null) {
+
+            %>
+            <h4 class="h4red"> <% out.print(session.getAttribute("error-msg")); %> </h4>
+            <%
+
+            session.removeAttribute("error-msg");
+        }
+    %>
+
     <!-- Tab content -->
     <div id="issues_list" class="tabcontent">
         <div class="table">
@@ -72,26 +85,46 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="cell" data-title="Username">
-                    ninjalug
-                </div>
-                <div class="cell" data-title="Email">
-                    misterninja@hotmail.com
-                </div>
-                <div class="cell" data-title="Password">
-                    ************
-                </div>
-                <div class="cell" data-title="Active">
-                    Yes
-                </div>
-                <div class="cell" data-title="pippo">
-                    A1
-                </div>
-                <div class="cell" data-title="pippo">
-                    <a href="www.google.it"> Dettagli </a>
-                </div>
-            </div>
+            <%
+                try {
+
+                    IssueManagementController controller = new IssueManagementController();
+
+                    for (IssueBean bean : controller.getIssueBeanList()) {
+
+            %>
+                        <div class="row">
+                            <div class="cell" data-title="ID">
+                                <% out.print(bean.getId()); %>
+                            </div>
+                            <div class="cell" data-title="Description">
+                                <% out.print(bean.getDescription()); %>
+                            </div>
+                            <div class="cell" data-title="characteristic">
+                                <% out.print(bean.getFeature().getName()); %>
+                            </div>
+                            <div class="cell" data-title="State">
+                                <% out.print(bean.getState()); %>
+                            </div>
+                            <div class="cell" data-title="Room">
+                                <% out.print(bean.getClassroom().getName()); %>
+                            </div>
+                            <div class="cell" data-title="Detail">
+                                <a href="secretaryViewDetail.jsp?issueId=<%out.print(bean.getId());%>"> Dettaglio </a>
+                            </div>
+                        </div>
+            <%
+                    }
+
+                } catch (DaoException e) {
+
+                    session.setAttribute("error-msg", "Errore nella connessione con il database.");
+                    response.sendRedirect("../login.jsp");
+
+                    e.printStackTrace();
+                }
+
+            %>
 
         </div>
     </div>
@@ -101,8 +134,6 @@
     </div>
 
 </div>
-
-<footer>Copyright &copy; Andrea Cerra ISPW 2017/2018</footer>
 
 <script>
     // Get the element with id="defaultOpen" and click on it

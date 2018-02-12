@@ -15,8 +15,11 @@
     if ("POST".equalsIgnoreCase(request.getMethod())) {
 
         // check form fields
-        if (request.getParameter("username") == null || request.getParameter("password") == null){
+        if (user.getUsername() == null || user.getPassword() == null){
+
+            session.setAttribute("error-msg", "Inserire username e password.");
             response.sendRedirect("../login.jsp");
+            return;
         }
 
         try {
@@ -31,7 +34,7 @@
 
                 case SECRETARY:
                     System.out.println("UTENTE SEGRETARIO");
-                    response.sendRedirect("../SecretaryView.jsp");
+                    response.sendRedirect("../secretaryView.jsp");
                     break;
                 case TECHNICIAN:
                     System.out.println("UTENTE TECNICO");
