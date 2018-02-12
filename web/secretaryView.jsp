@@ -10,7 +10,7 @@
     // Check if this is new comer on your Webpage.
     if (session.getAttribute("login") == null){
         // New location to be redirected
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("loginView.jsp");
     }
 
 %>
@@ -35,7 +35,7 @@
             <tr>
                 <td align="left">Benvenuto!</td>
                 <td align="right">
-                    <form method="POST" action="controller/logout.jsp">
+                    <form method="POST" action="controller/logoutController.jsp">
                         <input class="submit-exit" type="submit" value="Esci">
                     </form>
                 </td>
@@ -119,7 +119,7 @@
                 } catch (DaoException e) {
 
                     session.setAttribute("error-msg", "Errore nella connessione con il database.");
-                    response.sendRedirect("../login.jsp");
+                    response.sendRedirect("../loginView.jsp");
 
                     e.printStackTrace();
                 }

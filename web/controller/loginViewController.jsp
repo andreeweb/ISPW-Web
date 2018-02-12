@@ -18,7 +18,7 @@
         if (user.getUsername() == null || user.getPassword() == null){
 
             session.setAttribute("error-msg", "Inserire username e password.");
-            response.sendRedirect("../login.jsp");
+            response.sendRedirect("../loginView.jsp");
             return;
         }
 
@@ -38,21 +38,21 @@
                     break;
                 case TECHNICIAN:
                     System.out.println("UTENTE TECNICO");
-                    response.sendRedirect("../login.jsp");
+                    response.sendRedirect("../loginView.jsp");
                     break;
             }
 
         } catch (DaoException e) {
 
             session.setAttribute("error-msg", "Username e/o password errati.");
-            response.sendRedirect("../login.jsp");
+            response.sendRedirect("../loginView.jsp");
 
             e.printStackTrace();
         }
 
     }else{
 
-        response.sendRedirect("../login.jsp");
+        response.sendRedirect("../loginView.jsp");
     }
 
 %>

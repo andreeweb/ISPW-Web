@@ -18,7 +18,7 @@
   // Check if this is new comer on your Webpage.
   if (session.getAttribute("login") == null){
     // New location to be redirected
-    response.sendRedirect("login.jsp");
+    response.sendRedirect("loginView.jsp");
   }
 
 %>

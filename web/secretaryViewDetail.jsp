@@ -11,7 +11,7 @@
     // Check if this is new comer on your Webpage.
     if (session.getAttribute("login") == null){
         // New location to be redirected
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("loginView.jsp");
         return;
     }
 %>
@@ -41,7 +41,7 @@
             <tr>
                 <td align="left">Benvenuto!</td>
                 <td align="right">
-                    <form method="POST" action="controller/logout.jsp">
+                    <form method="POST" action="controller/logoutController.jsp">
                         <input class="submit-exit" type="submit" value="Esci">
                     </form>
                 </td>
@@ -64,7 +64,7 @@
 
                         issueBean = controller.getIssueBean(Integer.parseInt(request.getParameter("issueId")));
 
-                    } catch (DaoException e) {
+                    } catch (DaoException | NumberFormatException e) {
 
                         session.setAttribute("error-msg", "Guasto non trovato sul database.");
                         response.sendRedirect("../secretaryView.jsp");
