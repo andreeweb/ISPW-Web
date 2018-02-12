@@ -61,6 +61,40 @@ public class IssueManagementController {
     }
 
     /**
+     * Get IssueBean from database by ID
+     *
+     * @return IssueBean
+     * @throws DaoException error in dao
+     */
+    public IssueBean getIssueBean(Integer databaseId) throws DaoException {
+
+        IssueDao dao = DaoFactory.getSingletonInstance().getIssueDAO(Persistence.PostgreSQL);
+
+        // get issue
+        Issue issue = dao.getIssue(databaseId);
+
+        // create bean
+        IssueBean issueBean = new IssueBean();
+        issueBean.setId(issue.getId());
+        issueBean.setDescription(issue.getDescription());
+        issueBean.setState(issue.getState());
+
+        FeatureBean featureBean = new FeatureBean();
+        featureBean.setName(issue.getFeature().getName());
+        featureBean.setId(issue.getFeature().getId());
+
+        ClassroomBean classroomBean = new ClassroomBean();
+        classroomBean.setName(issue.getClassroom().getName());
+        classroomBean.setId(issue.getClassroom().getId());
+
+        issueBean.setFeature(featureBean);
+        issueBean.setClassroom(classroomBean);
+
+        return issueBean;
+
+    }
+
+    /**
      * Get all issue state from database
      *
      * @return issue state list

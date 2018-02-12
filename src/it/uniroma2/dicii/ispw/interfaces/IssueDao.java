@@ -22,6 +22,13 @@ public interface IssueDao {
     List<Issue> getIssues() throws DaoException;
 
     /**
+     * Get issue from database by ID
+     *
+     * @return issue
+     */
+    Issue getIssue(Integer databaseId) throws DaoException;
+
+    /**
      * Get all possibile state for issue from db
      *
      * @return List contains Issue State

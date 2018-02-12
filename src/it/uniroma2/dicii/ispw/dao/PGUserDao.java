@@ -42,7 +42,7 @@ public class PGUserDao implements UserDao {
             // execute
             ResultSet rs = stmt.executeQuery(sql);
 
-            // rs not empty
+            // rs empty
             if (!rs.first())
                 throw new DaoException("User not found");
 
@@ -59,7 +59,7 @@ public class PGUserDao implements UserDao {
             user.setName(rs.getString("name"));
             user.setSurname(rs.getString("surname"));
             user.setUsername(rs.getString("username"));
-            user.setUserRole(UserRole.valueOf(rs.getString("role"))); // todo by name
+            user.setUserRole(UserRole.valueOf(rs.getString("role")));
             //user.setPassword("");
 
             // Clean-up
