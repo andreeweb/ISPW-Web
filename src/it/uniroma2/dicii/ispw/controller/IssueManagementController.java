@@ -118,7 +118,7 @@ public class IssueManagementController {
         IssueDao dao = DaoFactory.getSingletonInstance().getIssueDAO(Persistence.PostgreSQL);
 
         Issue issue = new Issue();
-        issue.setId(bean.getId());
+        issue.setId(bean.getFeature().getId());
         issue.setDescription(bean.getDescription());
         issue.setState(bean.getState());
 

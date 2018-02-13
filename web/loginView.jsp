@@ -38,10 +38,10 @@
                     %>
                     <h4 class="h4red"> <% out.print(session.getAttribute("error-msg")); %> </h4>
                     <%
-
                     session.removeAttribute("error-msg");
-                    session.invalidate();
                 }
+
+                session.invalidate();
             %>
 
         </div>

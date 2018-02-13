@@ -33,12 +33,12 @@
             switch (user.getUserRole()){
 
                 case SECRETARY:
-                    System.out.println("UTENTE SEGRETARIO");
+                    session.setAttribute("role", "secretary");
                     response.sendRedirect("../secretaryView.jsp");
                     break;
                 case TECHNICIAN:
-                    System.out.println("UTENTE TECNICO");
-                    response.sendRedirect("../loginView.jsp");
+                    session.setAttribute("role", "technician");
+                    response.sendRedirect("../technicianView.jsp");
                     break;
             }
 

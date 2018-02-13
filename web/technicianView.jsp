@@ -8,7 +8,7 @@
 <%
 
     // Check if this is new comer on your Webpage.
-    if (session.getAttribute("login") == null || session.getAttribute("role") != "secretary"){
+    if (session.getAttribute("login") == null || session.getAttribute("role") != "technician"){
         // New location to be redirected
         response.sendRedirect("loginView.jsp");
         return;
@@ -53,9 +53,9 @@
     <%
         if (session.getAttribute("error-msg") != null) {
 
-            %>
-            <h4 class="h4red"> <% out.print(session.getAttribute("error-msg")); %> </h4>
-            <%
+    %>
+    <h4 class="h4red"> <% out.print(session.getAttribute("error-msg")); %> </h4>
+    <%
 
             session.removeAttribute("error-msg");
         }
@@ -111,7 +111,7 @@
                                 <% out.print(bean.getClassroom().getName()); %>
                             </div>
                             <div class="cell" data-title="Detail">
-                                <a href="secretaryViewDetail.jsp?issueId=<%out.print(bean.getId());%>"> Dettaglio </a>
+                                <a href="technicianViewDetail.jsp?issueId=<%out.print(bean.getId());%>"> Dettaglio </a>
                             </div>
                         </div>
                         <%

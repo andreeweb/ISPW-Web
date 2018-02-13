@@ -407,7 +407,8 @@ select#soflow-color {
     margin-top: 50px;
 }
 .long-button-red {
-    height: 35px;
+    height: 26px;
+    text-align: center;
     padding: 5px 22px 5px 22px;
     background:red;
     font-size: 11pt;
@@ -416,6 +417,6 @@ select#soflow-color {
     cursor:pointer;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    width: 95%;
+    width: 90.8%;
     margin-top: 10px;
 }

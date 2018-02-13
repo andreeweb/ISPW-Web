@@ -10,7 +10,7 @@
 <%
 
     // Check if this is new comer on your Webpage.
-    if (session.getAttribute("login") == null || session.getAttribute("role") != "secretary"){
+    if (session.getAttribute("login") == null || session.getAttribute("role") != "technician"){
         // New location to be redirected
         response.sendRedirect("loginView.jsp");
         return;
@@ -68,7 +68,7 @@
                         } catch (DaoException | NumberFormatException e) {
 
                             session.setAttribute("error-msg", "Guasto non trovato sul database.");
-                            response.sendRedirect("../secretaryView.jsp");
+                            response.sendRedirect("../technicianView.jsp");
 
                             e.printStackTrace();
                         }
@@ -107,34 +107,33 @@
                     <div class="block">
                         <div class="full">
                             <select name="state" id="soflow">
-                            <%
-                                try {
+                                <%
+                                    try {
 
-                                    for (IssueState state : controller.getStateList()) {
+                                        for (IssueState state : controller.getStateList()) {
+                                            %>
+                                            <option value="<% out.print(state); %>"><% out.print(state); %></option>
+                                            <%
+                                        }
 
-                                        %>
-                                        <option value="<% out.print(state); %>"><% out.print(state); %></option>
-                                        <%
+                                    } catch (DaoException e) {
+
+                                        session.setAttribute("error-msg", "Guasto non trovato sul database.");
+                                        response.sendRedirect("../technicianView.jsp");
+
+                                        e.printStackTrace();
                                     }
 
-                                } catch (DaoException e) {
-
-                                    session.setAttribute("error-msg", "Guasto non trovato sul database.");
-                                    response.sendRedirect("../secretaryView.jsp");
-
-                                    e.printStackTrace();
-                                }
-
-                            %>
+                                %>
                             </select>
                         </div>
                     </div>
 
                     <div class="block">
                         <div class="full">
-                            <input type="hidden" name="issue_id" value="<% out.print(issueBean.getFeature().getId()); %>">
+                            <input type="hidden" name="issue_id" value="<% out.print(issueBean.getId()); %>">
                             <input class="long-button-blue" type="submit" value="Conferma">
-                            <input class="long-button-red" onclick="window.history.go(-1); return false;" value="Annulla">
+                            <input class="long-button-red" onclick="window.history.go(-1); return false;" value="1Annulla">
                         </div>
                     </div>
                 </form>
@@ -165,22 +164,22 @@
 
                                 for (IssueBean iBean : controller.getStateListForIssue(issueBean)) {
 
-                                    %>
-                                    <div class="row">
-                                        <div class="cell" data-title="state">
-                                            <% out.print(iBean.getState()); %>
-                                        </div>
-                                        <div class="cell" data-title="date">
-                                            <% out.print(iBean.getDate()); %>
-                                        </div>
-                                    </div>
-                                    <%
+                        %>
+                        <div class="row">
+                            <div class="cell" data-title="state">
+                                <% out.print(iBean.getState()); %>
+                            </div>
+                            <div class="cell" data-title="date">
+                                <% out.print(iBean.getDate()); %>
+                            </div>
+                        </div>
+                        <%
                                 }
 
                             } catch (DaoException e) {
 
                                 session.setAttribute("error-msg", "Guasto non trovato sul database.");
-                                response.sendRedirect("../secretaryView.jsp");
+                                response.sendRedirect("../technicianView.jsp");
 
                                 e.printStackTrace();
                             }
