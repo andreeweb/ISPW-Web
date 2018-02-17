@@ -2,6 +2,8 @@
 <%@ page import="it.uniroma2.dicii.ispw.controller.IssueManagementController" %>
 <%@ page import="it.uniroma2.dicii.ispw.exception.DaoException" %>
 <%@ page import="it.uniroma2.dicii.ispw.enumeration.IssueState" %>
+<%@ page import="it.uniroma2.dicii.ispw.enumeration.UserRole" %>
+<%@ page import="java.util.List" %>
 <%--
   Created by IntelliJ IDEA.
   User: Andrea Cerra
@@ -19,7 +21,15 @@
 
 <%!
     private IssueBean issueBean;
+    private IssueManagementController controller;
 %>
+
+<%
+    String roleString = (String) session.getAttribute("role");
+    UserRole role = UserRole.valueOf(roleString.toUpperCase());
+    controller = new IssueManagementController(role);
+%>
+
 
 <!DOCTYPE html>
 <html>
@@ -56,10 +66,9 @@
 
             <div class="detail">
 
-                <form method="POST" action="controller/secretaryViewDetailController.jsp">
+                <form method="POST" action="controller/technicianViewDetailController.jsp">
 
                     <%
-                        IssueManagementController controller = new IssueManagementController();
 
                         try {
 
@@ -110,9 +119,18 @@
                                 <%
                                     try {
 
-                                        for (IssueState state : controller.getStateList()) {
+                                        List<IssueState> states = controller.getPossibleStateListForIssue(issueBean);
+
+                                        for (IssueState state : states) {
+
                                             %>
                                             <option value="<% out.print(state); %>"><% out.print(state); %></option>
+                                            <%
+                                        }
+
+                                        if (states.size() == 0){
+                                            %>
+                                            <option disabled="disabled">Non &egrave; possibile selezionare ulteriori stati.</option>
                                             <%
                                         }
 
@@ -131,9 +149,9 @@
 
                     <div class="block">
                         <div class="full">
-                            <input type="hidden" name="issue_id" value="<% out.print(issueBean.getId()); %>">
+                            <input type="hidden" name="concrete_issue_id" value="<% out.print(issueBean.getFeature().getId()); %>">
                             <input class="long-button-blue" type="submit" value="Conferma">
-                            <input class="long-button-red" onclick="window.history.go(-1); return false;" value="1Annulla">
+                            <input class="long-button-red" onclick="window.history.go(-1); return false;" value="Annulla">
                         </div>
                     </div>
                 </form>
@@ -162,18 +180,18 @@
                         <%
                             try {
 
-                                for (IssueBean iBean : controller.getStateListForIssue(issueBean)) {
+                                for (IssueBean iBean : controller.getStateStoryListForIssue(issueBean)) {
 
-                        %>
-                        <div class="row">
-                            <div class="cell" data-title="state">
-                                <% out.print(iBean.getState()); %>
-                            </div>
-                            <div class="cell" data-title="date">
-                                <% out.print(iBean.getDate()); %>
-                            </div>
-                        </div>
-                        <%
+                                    %>
+                                    <div class="row">
+                                        <div class="cell" data-title="state">
+                                            <% out.print(iBean.getState()); %>
+                                        </div>
+                                        <div class="cell" data-title="date">
+                                            <% out.print(iBean.getDate()); %>
+                                        </div>
+                                    </div>
+                                    <%
                                 }
 
                             } catch (DaoException e) {

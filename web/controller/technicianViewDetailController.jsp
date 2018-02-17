@@ -20,7 +20,7 @@
                 request.getParameter("state") == null ||
                 request.getParameter("concrete_issue_id") == null){
 
-            response.sendRedirect("../secretaryView.jsp");
+            response.sendRedirect("../technicianView.jsp");
             return;
         }
 
@@ -42,19 +42,19 @@
 
             controller.updateIssue(issueBean);
 
-            response.sendRedirect("../secretaryView.jsp");
+            response.sendRedirect("../technicianView.jsp");
 
         } catch (DaoException e) {
 
             session.setAttribute("error-msg", "Errore nell'aggiornamento dei dati.");
-            response.sendRedirect("../secretaryView.jsp");
+            response.sendRedirect("../technicianView.jsp");
 
             e.printStackTrace();
         }
 
     }else{
 
-        response.sendRedirect("../secretaryView.jsp");
+        response.sendRedirect("../technicianView.jsp");
     }
 
 %>

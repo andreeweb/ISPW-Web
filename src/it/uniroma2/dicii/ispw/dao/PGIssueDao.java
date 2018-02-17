@@ -1,6 +1,7 @@
 package it.uniroma2.dicii.ispw.dao;
 
 import it.uniroma2.dicii.ispw.enumeration.IssueState;
+import it.uniroma2.dicii.ispw.enumeration.UserRole;
 import it.uniroma2.dicii.ispw.exception.DaoException;
 import it.uniroma2.dicii.ispw.interfaces.IssueDao;
 import it.uniroma2.dicii.ispw.model.Classroom;
@@ -196,7 +197,7 @@ public class PGIssueDao implements IssueDao {
         return issue;
     }
 
-    @Override
+    /*@Override
     public List<IssueState> getStates() throws DaoException{
 
         List<IssueState> list = new ArrayList<IssueState>();
@@ -256,7 +257,7 @@ public class PGIssueDao implements IssueDao {
 
         return list;
 
-    }
+    }*/
 
     @Override
     public List<Issue> getIssueStateStory(Issue issue) throws DaoException {

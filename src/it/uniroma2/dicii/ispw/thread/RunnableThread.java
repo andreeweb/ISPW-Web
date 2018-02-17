@@ -5,6 +5,7 @@ import it.uniroma2.dicii.ispw.bean.UserBean;
 import it.uniroma2.dicii.ispw.controller.IssueManagementController;
 import it.uniroma2.dicii.ispw.controller.LoginController;
 import it.uniroma2.dicii.ispw.enumeration.IssueState;
+import it.uniroma2.dicii.ispw.enumeration.UserRole;
 import it.uniroma2.dicii.ispw.exception.DaoException;
 
 public class RunnableThread implements Runnable{
@@ -37,7 +38,7 @@ public class RunnableThread implements Runnable{
 
         System.out.println(Thread.currentThread().getName() + " - logged as: " + bean.getUserRole().toString());
 
-        IssueManagementController ctl = new IssueManagementController();
+        IssueManagementController ctl = new IssueManagementController(UserRole.SECRETARY);
 
         IssueBean issueBean = new IssueBean();
         issueBean.setId(4);

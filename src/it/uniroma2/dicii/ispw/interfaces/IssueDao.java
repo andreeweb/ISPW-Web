@@ -1,6 +1,7 @@
 package it.uniroma2.dicii.ispw.interfaces;
 
 import it.uniroma2.dicii.ispw.enumeration.IssueState;
+import it.uniroma2.dicii.ispw.enumeration.UserRole;
 import it.uniroma2.dicii.ispw.exception.DaoException;
 import it.uniroma2.dicii.ispw.model.Issue;
 
@@ -29,13 +30,13 @@ public interface IssueDao {
     Issue getIssue(Integer databaseId) throws DaoException;
 
     /**
-     * Get all possibile state for issue from db
+     * Get all possible state for issue from db
      *
      * @return List contains Issue State
      * @throws DaoException error in db
      * @see IssueState
      */
-    List<IssueState> getStates() throws DaoException;
+    //List<IssueState> getStates() throws DaoException;
 
     /**
      * Get all issue state with data

@@ -2,6 +2,9 @@
 <%@ page import="it.uniroma2.dicii.ispw.controller.IssueManagementController" %>
 <%@ page import="it.uniroma2.dicii.ispw.exception.DaoException" %>
 <%@ page import="it.uniroma2.dicii.ispw.enumeration.IssueState" %>
+<%@ page import="it.uniroma2.dicii.ispw.enumeration.UserRole" %>
+<%@ page import="it.uniroma2.dicii.ispw.model.User" %>
+<%@ page import="java.util.List" %>
 <%--
   Created by IntelliJ IDEA.
   User: Andrea Cerra
@@ -19,6 +22,13 @@
 
 <%!
     private IssueBean issueBean;
+    private IssueManagementController controller;
+%>
+
+<%
+    String roleString = (String) session.getAttribute("role");
+    UserRole role = UserRole.valueOf(roleString.toUpperCase());
+    controller = new IssueManagementController(role);
 %>
 
 <!DOCTYPE html>
@@ -59,8 +69,6 @@
                 <form method="POST" action="controller/secretaryViewDetailController.jsp">
 
                     <%
-                        IssueManagementController controller = new IssueManagementController();
-
                         try {
 
                             issueBean = controller.getIssueBean(Integer.parseInt(request.getParameter("issueId")));
@@ -110,10 +118,18 @@
                             <%
                                 try {
 
-                                    for (IssueState state : controller.getStateList()) {
+                                    List<IssueState> states = controller.getPossibleStateListForIssue(issueBean);
+
+                                    for (IssueState state : states) {
 
                                         %>
                                         <option value="<% out.print(state); %>"><% out.print(state); %></option>
+                                        <%
+                                    }
+
+                                    if (states.size() == 0){
+                                        %>
+                                        <option disabled="disabled">Non &egrave; possibile selezionare ulteriori stati.</option>
                                         <%
                                     }
 
@@ -163,7 +179,7 @@
                         <%
                             try {
 
-                                for (IssueBean iBean : controller.getStateListForIssue(issueBean)) {
+                                for (IssueBean iBean : controller.getStateStoryListForIssue(issueBean)) {
 
                                     %>
                                     <div class="row">

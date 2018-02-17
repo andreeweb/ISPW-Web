@@ -6,12 +6,14 @@ import it.uniroma2.dicii.ispw.bean.IssueBean;
 import it.uniroma2.dicii.ispw.dao.DaoFactory;
 import it.uniroma2.dicii.ispw.enumeration.IssueState;
 import it.uniroma2.dicii.ispw.enumeration.Persistence;
+import it.uniroma2.dicii.ispw.enumeration.UserRole;
 import it.uniroma2.dicii.ispw.exception.DaoException;
 import it.uniroma2.dicii.ispw.interfaces.IssueDao;
 import it.uniroma2.dicii.ispw.model.Feature;
 import it.uniroma2.dicii.ispw.model.Issue;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -22,18 +24,49 @@ import java.util.List;
 public class IssueManagementController {
 
     /**
-     * Get all isssue from database
+     * The role of the user participating in the use case
+     */
+    private UserRole role;
+
+    /**
+     * Filter for technician user role,
+     * in this array there are the states accessible to the technician
+     */
+    List<IssueState> technicianStateFilter = new ArrayList<>(Arrays.asList(
+            IssueState.CONFIRMED,
+            IssueState.TAKEN,
+            IssueState.REPAIRING,
+            IssueState.TESTING,
+            IssueState.REJECTED,
+            IssueState.REPAIRED));
+
+    /**
+     *
+     * @param role user role
+     */
+    public IssueManagementController(UserRole role) {
+        this.role = role;
+    }
+
+    /**
+     * Get all isssue from database based on role
      *
      * @return issue list
      * @throws DaoException error in dao
      */
-    public List<IssueBean> getIssueBeanList() throws DaoException {
+    public List<IssueBean> getIssueBeanListForRole() throws DaoException {
 
         IssueDao dao = DaoFactory.getSingletonInstance().getIssueDAO(Persistence.PostgreSQL);
         List<Issue> list = dao.getIssues();
         List<IssueBean> beanList = new ArrayList<IssueBean>();
 
         for (Issue issue:list) {
+
+            // if the state is in filter ok, else we will not add to the list
+            if (this.role.equals(UserRole.TECHNICIAN)){
+                if (!technicianStateFilter.contains(issue.getState()))
+                    continue;
+            }
 
             // read data
             IssueBean issueBean = new IssueBean();
@@ -95,15 +128,77 @@ public class IssueManagementController {
     }
 
     /**
-     * Get all issue state from database
+     * Get all possible issue state, based on user role and issue story.
      *
      * @return issue state list
      * @throws DaoException error in db
      */
-    public List<IssueState> getStateList() throws DaoException {
+    public List<IssueState> getPossibleStateListForIssue(IssueBean issueBean) throws DaoException {
 
-        IssueDao dao = DaoFactory.getSingletonInstance().getIssueDAO(Persistence.PostgreSQL);
-        return dao.getStates();
+        List<IssueState> list = new ArrayList<IssueState>();
+
+        switch (this.role){
+
+            case SECRETARY:
+
+                if (issueBean.getState().equals(IssueState.NEW)){
+                    list.add(IssueState.CONFIRMED);
+                    list.add(IssueState.CANCELED);
+                    break;
+                }
+
+                if (issueBean.getState().equals(IssueState.REJECTED)){
+                    break;
+                }
+
+                if (issueBean.getState().equals(IssueState.REPAIRED)){
+                    break;
+                }
+
+                list.add(IssueState.CANCELED);
+
+                break;
+
+            case TECHNICIAN:
+
+                if (issueBean.getState().equals(IssueState.CONFIRMED)){
+                    list.add(IssueState.TAKEN);
+                    list.add(IssueState.REPAIRING);
+                    list.add(IssueState.TESTING);
+                    list.add(IssueState.REPAIRED);
+                    list.add(IssueState.REJECTED);
+                    break;
+                }
+
+                if (issueBean.getState().equals(IssueState.TAKEN)){
+                    list.add(IssueState.REPAIRING);
+                    list.add(IssueState.TESTING);
+                    list.add(IssueState.REPAIRED);
+                    list.add(IssueState.REJECTED);
+                    break;
+                }
+
+                if (issueBean.getState().equals(IssueState.REPAIRING)){
+                    list.add(IssueState.TESTING);
+                    list.add(IssueState.REPAIRED);
+                    list.add(IssueState.REJECTED);
+                    break;
+                }
+
+                if (issueBean.getState().equals(IssueState.TESTING)){
+                    list.add(IssueState.REPAIRED);
+                    list.add(IssueState.REJECTED);
+                    break;
+                }
+
+                break;
+        }
+
+        for (IssueBean iBean : this.getStateStoryListForIssue(issueBean)) {
+            list.remove(iBean.getState());
+        }
+
+        return list;
 
     }
 
@@ -136,7 +231,7 @@ public class IssueManagementController {
      * @return issuebean contains only state and date
      * @throws DaoException error in db
      */
-    public List<IssueBean> getStateListForIssue(IssueBean issueBean) throws DaoException {
+    public List<IssueBean> getStateStoryListForIssue(IssueBean issueBean) throws DaoException {
 
         IssueDao dao = DaoFactory.getSingletonInstance().getIssueDAO(Persistence.PostgreSQL);
 

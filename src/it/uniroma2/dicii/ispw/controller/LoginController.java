@@ -26,8 +26,6 @@ public class LoginController {
      */
     public UserBean validateLogin(UserBean userBean) throws DaoException {
 
-        System.out.println("Verify login for: " + userBean.getUsername() + " " + userBean.getPassword());
-
         UserDao dao = DaoFactory.getSingletonInstance().getUserDAO(Persistence.File);
         User user = dao.getUserByUsernameAndPassword(userBean.getUsername(), Sha.sha256(userBean.getPassword()));
 

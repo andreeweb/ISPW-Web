@@ -1,6 +1,8 @@
 <%@ page import="it.uniroma2.dicii.ispw.controller.IssueManagementController" %>
 <%@ page import="it.uniroma2.dicii.ispw.bean.IssueBean" %>
-<%@ page import="it.uniroma2.dicii.ispw.exception.DaoException" %><%--
+<%@ page import="it.uniroma2.dicii.ispw.exception.DaoException" %>
+<%@ page import="it.uniroma2.dicii.ispw.enumeration.UserRole" %>
+<%@ page import="it.uniroma2.dicii.ispw.enumeration.IssueState" %><%--
   Created by IntelliJ IDEA.
   User: Andrea Cerra
 --%>
@@ -89,9 +91,12 @@
             <%
                 try {
 
-                    IssueManagementController controller = new IssueManagementController();
+                    String roleString = (String) session.getAttribute("role");
+                    UserRole role = UserRole.valueOf(roleString.toUpperCase());
 
-                    for (IssueBean bean : controller.getIssueBeanList()) {
+                    IssueManagementController controller = new IssueManagementController(role);
+
+                    for (IssueBean bean : controller.getIssueBeanListForRole()) {
 
                         %>
                         <div class="row">
@@ -104,9 +109,23 @@
                             <div class="cell" data-title="characteristic">
                                 <% out.print(bean.getFeature().getName()); %>
                             </div>
-                            <div class="cell" data-title="State">
-                                <% out.print(bean.getState()); %>
-                            </div>
+
+                            <%
+                                if (bean.getState().equals(IssueState.NEW)){
+                                    %>
+                                        <div class="cell-red" data-title="State">
+                                            <% out.print(bean.getState()); %>
+                                        </div>
+                                    <%
+                                }else{
+                                    %>
+                                        <div class="cell" data-title="State">
+                                            <% out.print(bean.getState()); %>
+                                        </div>
+                                    <%
+                                }
+                            %>
+
                             <div class="cell" data-title="Room">
                                 <% out.print(bean.getClassroom().getName()); %>
                             </div>
@@ -131,7 +150,10 @@
     </div>
 
     <div id="info" class="tabcontent">
+
         <h3>Informazioni</h3>
+        <h1>ISPW 2017/2018 - Andrea Cerra</h1>
+
     </div>
 
 </div>
