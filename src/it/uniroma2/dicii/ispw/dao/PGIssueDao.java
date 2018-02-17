@@ -46,7 +46,7 @@ public class PGIssueDao implements IssueDao {
                     "classroom.name AS classroom_name, " +
                     "abstract_feature.name AS feature_name, " +
                     "abstract_feature.feature_id AS feature_id FROM issue " +
-                    "JOIN concrete_feature ON (issue.concrete_feature = concrete_feature.classroom_id) " +
+                    "JOIN concrete_feature ON (issue.concrete_feature = concrete_feature.feature_id) " +
                     "JOIN classroom ON (concrete_feature.classroom_id = classroom.classroom_id) " +
                     "JOIN abstract_feature ON (concrete_feature.abstract_id = abstract_feature.feature_id) " +
                     "ORDER BY concrete_feature.feature_id, data desc;";
