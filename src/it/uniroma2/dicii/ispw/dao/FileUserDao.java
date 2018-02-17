@@ -6,6 +6,7 @@ import it.uniroma2.dicii.ispw.exception.DaoException;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -24,11 +25,14 @@ public class FileUserDao implements UserDao{
     public User getUserByUsernameAndPassword(String username, String password) throws DaoException {
 
         ObjectInputStream in;
-        User user = null;
+        User user;
 
         try {
 
-            in = new ObjectInputStream(new FileInputStream("./user.out"));
+            ClassLoader loader = Thread.currentThread().getContextClassLoader();
+            InputStream resourceStream = loader.getResourceAsStream("user.out");
+
+            in = new ObjectInputStream(resourceStream);
 
             ArrayList<User> list = (ArrayList<User>) in.readObject();
 
