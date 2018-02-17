@@ -343,7 +343,7 @@ public class PGIssueDao implements IssueDao {
 
             // query
             String sql = "INSERT INTO issue (description, concrete_feature, state, data) " +
-                    "VALUES ('" + issue.getDescription() + "'," + issue.getId() + ", '" + issue.getState() + "', '" + new Date(System.currentTimeMillis()) + "');";
+                    "VALUES ('" + issue.getDescription() + "'," + issue.getFeature().getId() + ", '" + issue.getState() + "', '" + new Date(System.currentTimeMillis()) + "');";
 
             // execute
             stmt.executeUpdate(sql);

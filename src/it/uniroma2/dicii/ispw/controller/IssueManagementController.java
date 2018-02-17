@@ -110,17 +110,21 @@ public class IssueManagementController {
     /**
      * Add new entry in db with new state
      *
-     * @param bean with new data
+     * @param issueBean with new data
      * @throws DaoException error in db
      */
-    public void updateIssue(IssueBean bean) throws DaoException {
+    public void updateIssue(IssueBean issueBean) throws DaoException {
 
         IssueDao dao = DaoFactory.getSingletonInstance().getIssueDAO(Persistence.PostgreSQL);
 
         Issue issue = new Issue();
-        issue.setId(bean.getFeature().getId());
-        issue.setDescription(bean.getDescription());
-        issue.setState(bean.getState());
+        issue.setDescription(issueBean.getDescription());
+        issue.setState(issueBean.getState());
+
+        Feature feature = new Feature();
+        feature.setId(issueBean.getFeature().getId());
+
+        issue.setFeature(feature);
 
         dao.updateIssue(issue);
     }

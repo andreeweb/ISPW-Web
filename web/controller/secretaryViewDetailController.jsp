@@ -7,6 +7,8 @@
 <%@ page import="it.uniroma2.dicii.ispw.exception.DaoException" %>
 <%@ page import="it.uniroma2.dicii.ispw.bean.IssueBean" %>
 <%@ page import="it.uniroma2.dicii.ispw.enumeration.IssueState" %>
+<%@ page import="it.uniroma2.dicii.ispw.model.Feature" %>
+<%@ page import="it.uniroma2.dicii.ispw.bean.FeatureBean" %>
 
 <%
 
@@ -15,7 +17,7 @@
         // check form fields
         if (request.getParameter("description") == null ||
                 request.getParameter("state") == null ||
-                request.getParameter("issue_id") == null){
+                request.getParameter("concrete_issue_id") == null){
 
             response.sendRedirect("../secretaryView.jsp");
             return;
@@ -25,12 +27,16 @@
 
             IssueManagementController controller = new IssueManagementController();
 
-            IssueBean bean = new IssueBean();
-            bean.setId(Integer.parseInt(request.getParameter("issue_id")));
-            bean.setDescription(request.getParameter("description"));
-            bean.setState(IssueState.valueOf(request.getParameter("state")));
+            IssueBean issueBean = new IssueBean();
+            issueBean.setDescription(request.getParameter("description"));
+            issueBean.setState(IssueState.valueOf(request.getParameter("state")));
 
-            controller.updateIssue(bean);
+            FeatureBean featureBean = new FeatureBean();
+            featureBean.setId(Integer.valueOf(request.getParameter("concrete_issue_id")));
+
+            issueBean.setFeature(featureBean);
+
+            controller.updateIssue(issueBean);
 
             response.sendRedirect("../secretaryView.jsp");
 

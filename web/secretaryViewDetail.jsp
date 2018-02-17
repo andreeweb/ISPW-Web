@@ -132,7 +132,7 @@
 
                     <div class="block">
                         <div class="full">
-                            <input type="hidden" name="issue_id" value="<% out.print(issueBean.getFeature().getId()); %>">
+                            <input type="hidden" name="concrete_issue_id" value="<% out.print(issueBean.getFeature().getId()); %>">
                             <input class="long-button-blue" type="submit" value="Conferma">
                             <input class="long-button-red" onclick="window.history.go(-1); return false;" value="Annulla">
                         </div>
