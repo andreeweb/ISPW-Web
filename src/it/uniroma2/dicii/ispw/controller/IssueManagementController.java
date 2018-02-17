@@ -56,7 +56,7 @@ public class IssueManagementController {
      */
     public List<IssueBean> getIssueBeanListForRole() throws DaoException {
 
-        IssueDao dao = DaoFactory.getSingletonInstance().getIssueDAO(Persistence.PostgreSQL);
+        IssueDao dao = DaoFactory.getSingletonInstance().getIssueDAO();
         List<Issue> list = dao.getIssues();
         List<IssueBean> beanList = new ArrayList<IssueBean>();
 
@@ -101,7 +101,7 @@ public class IssueManagementController {
      */
     public IssueBean getIssueBean(Integer databaseId) throws DaoException {
 
-        IssueDao dao = DaoFactory.getSingletonInstance().getIssueDAO(Persistence.PostgreSQL);
+        IssueDao dao = DaoFactory.getSingletonInstance().getIssueDAO();
 
         // get issue
         Issue issue = dao.getIssue(databaseId);
@@ -210,7 +210,7 @@ public class IssueManagementController {
      */
     public void updateIssue(IssueBean issueBean) throws DaoException {
 
-        IssueDao dao = DaoFactory.getSingletonInstance().getIssueDAO(Persistence.PostgreSQL);
+        IssueDao dao = DaoFactory.getSingletonInstance().getIssueDAO();
 
         Issue issue = new Issue();
         issue.setDescription(issueBean.getDescription());
@@ -233,7 +233,7 @@ public class IssueManagementController {
      */
     public List<IssueBean> getStateStoryListForIssue(IssueBean issueBean) throws DaoException {
 
-        IssueDao dao = DaoFactory.getSingletonInstance().getIssueDAO(Persistence.PostgreSQL);
+        IssueDao dao = DaoFactory.getSingletonInstance().getIssueDAO();
 
         Issue is = new Issue();
         is.setId(issueBean.getId());

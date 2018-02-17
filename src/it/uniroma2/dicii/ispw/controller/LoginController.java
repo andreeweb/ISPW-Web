@@ -7,6 +7,7 @@ import it.uniroma2.dicii.ispw.bean.UserBean;
 import it.uniroma2.dicii.ispw.enumeration.Persistence;
 import it.uniroma2.dicii.ispw.dao.DaoFactory;
 import it.uniroma2.dicii.ispw.exception.DaoException;
+import it.uniroma2.dicii.ispw.utils.Config;
 import it.uniroma2.dicii.ispw.utils.Sha;
 
 /**
@@ -26,7 +27,7 @@ public class LoginController {
      */
     public UserBean validateLogin(UserBean userBean) throws DaoException {
 
-        UserDao dao = DaoFactory.getSingletonInstance().getUserDAO(Persistence.File);
+        UserDao dao = DaoFactory.getSingletonInstance().getUserDAO();
         User user = dao.getUserByUsernameAndPassword(userBean.getUsername(), Sha.sha256(userBean.getPassword()));
 
         userBean.setUserRole(user.getUserRole());

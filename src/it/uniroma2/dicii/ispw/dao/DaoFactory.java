@@ -5,6 +5,7 @@ import it.uniroma2.dicii.ispw.exception.DaoException;
 import it.uniroma2.dicii.ispw.exception.DatabaseException;
 import it.uniroma2.dicii.ispw.interfaces.IssueDao;
 import it.uniroma2.dicii.ispw.interfaces.UserDao;
+import it.uniroma2.dicii.ispw.utils.Config;
 
 /**
  * Factory class for Data Access Object class
@@ -21,37 +22,48 @@ public class DaoFactory {
     }
 
     /**
-     * Return an istance of concrete user dao
+     * Return an istance of concrete user dao using Reflection
      *
-     * @param type check enum Persistence
      * @return UserDao object
      * @throws DaoException error with database connection or wrong type in config
      */
-    public UserDao getUserDAO(Persistence type) throws DaoException{
+    public UserDao getUserDAO() throws DaoException{
 
-        switch (type) {
+        String userDaoClass = Config.getSingletonInstance().getProperty("userDaoClass");
 
-            case PostgreSQL: return new PGUserDao();
-            case File: return new FileUserDao();
-            default: throw new DaoException("Invalid type : " + type);
+        try {
 
+            Class<?> c = Class.forName(userDaoClass);
+            return (UserDao) c.newInstance();
+
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+
+            e.printStackTrace();
+            throw new DaoException("Invalid type : " + userDaoClass, e.getCause());
         }
+
     }
 
 
     /**
-     * Return an istance of concrete issue dao
+     * Return an istance of concrete issue dao using Reflection
      *
-     * @param type check enum Persistence
      * @return IssueDao object
      * @throws DaoException error with database connection or wrong type in config
      */
-    public IssueDao getIssueDAO(Persistence type) throws DaoException{
+    public IssueDao getIssueDAO() throws DaoException{
 
-        switch (type) {
+        String userDaoClass = Config.getSingletonInstance().getProperty("issueDaoClass");
 
-            case PostgreSQL: return new PGIssueDao();
-            default: throw new DaoException("Invalid type : " + type);
+        try {
+
+            Class<?> c = Class.forName(userDaoClass);
+            return (IssueDao) c.newInstance();
+
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+
+            e.printStackTrace();
+            throw new DaoException("Invalid type : " + userDaoClass, e.getCause());
         }
     }
 
