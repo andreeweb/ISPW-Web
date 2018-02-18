@@ -1,63 +1,70 @@
 package it.uniroma2.dicii.ispw.thread;
 
 import it.uniroma2.dicii.ispw.bean.IssueBean;
-import it.uniroma2.dicii.ispw.bean.UserBean;
 import it.uniroma2.dicii.ispw.controller.IssueManagementController;
-import it.uniroma2.dicii.ispw.controller.LoginController;
-import it.uniroma2.dicii.ispw.enumeration.IssueState;
 import it.uniroma2.dicii.ispw.enumeration.UserRole;
 import it.uniroma2.dicii.ispw.exception.DaoException;
 
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.concurrent.locks.Lock;
+
 public class RunnableThread implements Runnable{
+
+    private ArrayList<IssueBean> issueBeans;
+    private Lock lock;
+    private Random randomGenerator;
+
+    public RunnableThread(ArrayList<IssueBean> issueBeans, Lock reentrantLock) {
+
+        this.issueBeans = issueBeans;
+        this.lock = reentrantLock;
+        randomGenerator = new Random();
+    }
 
     @Override
     public void run() {
 
-        try {
+        System.out.println(Thread.currentThread().getName() + " Spawn!");
 
-            System.out.println("Runnable Thread:" + Thread.currentThread().getName());
-            Thread.sleep(5000);
+        IssueManagementController controller = new IssueManagementController(UserRole.SECRETARY);
 
-        } catch (InterruptedException e) {
+        for (;;){
 
-            System.out.println(e.getMessage());
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println(Thread.currentThread().getName() + " Acquire lock");
+            lock.lock();
+            System.out.println(Thread.currentThread().getName() + " Lock acquired");
+
+            if (issueBeans.size() == 0) {
+                lock.unlock();
+                break;
+            }
+
+            int index = randomGenerator.nextInt(issueBeans.size());
+            System.out.println(Thread.currentThread().getName() + " - " + issueBeans.get(index));
+
+            try{
+
+                controller.updateIssue(issueBeans.get(index));
+                issueBeans.remove(index);
+
+            }catch (DaoException | IllegalArgumentException e){
+
+                e.printStackTrace();
+
+            }finally {
+
+                lock.unlock();
+                System.out.println(Thread.currentThread().getName() + " Lock released");
+            }
         }
 
-        System.out.println(Thread.currentThread().getName() + " - Hello i am a Thread.");
-
-        System.out.println(Thread.currentThread().getName() + " - Login.");
-
-        UserBean bean = new UserBean("pinco.pallino@me.com", "password");
-
-        LoginController controller = new LoginController();
-        try {
-            bean = controller.validateLogin(bean);
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(Thread.currentThread().getName() + " - logged as: " + bean.getUserRole().toString());
-
-        IssueManagementController ctl = new IssueManagementController(UserRole.SECRETARY);
-
-        IssueBean issueBean = new IssueBean();
-        issueBean.setId(4);
-        issueBean.setDescription("Thread example description");
-        issueBean.setState(IssueState.valueOf("NEW"));
-
-        System.out.println(Thread.currentThread().getName() + " - Insert in db");
-
-        try {
-
-            ctl.updateIssue(issueBean);
-            Thread.sleep(5000);
-
-            System.out.println(Thread.currentThread().getName() + " - Inserte executed");
-
-        } catch (DaoException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        System.out.println(Thread.currentThread().getName() + " bye bye");
     }
 }

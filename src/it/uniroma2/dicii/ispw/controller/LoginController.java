@@ -1,13 +1,11 @@
 package it.uniroma2.dicii.ispw.controller;
 
-import it.uniroma2.dicii.ispw.exception.DatabaseException;
-import it.uniroma2.dicii.ispw.interfaces.UserDao;
-import it.uniroma2.dicii.ispw.model.User;
 import it.uniroma2.dicii.ispw.bean.UserBean;
-import it.uniroma2.dicii.ispw.enumeration.Persistence;
 import it.uniroma2.dicii.ispw.dao.DaoFactory;
 import it.uniroma2.dicii.ispw.exception.DaoException;
-import it.uniroma2.dicii.ispw.utils.Config;
+import it.uniroma2.dicii.ispw.interfaces.UserDao;
+import it.uniroma2.dicii.ispw.model.User;
+import it.uniroma2.dicii.ispw.thread.SimpleThread;
 import it.uniroma2.dicii.ispw.utils.Sha;
 
 /**
@@ -35,5 +33,21 @@ public class LoginController {
         userBean.setSurname(user.getSurname());
 
         return userBean;
+    }
+
+    /**
+     *
+     * Dummy method, thorugh this we start fill db with dummy data from login page.
+     * Check the JSP page loadData.jsp
+     *
+     * @see it.uniroma2.dicii.ispw.thread.RunnableThread
+     * @see SimpleThread
+     */
+    public void loadData() {
+        // Start thread for create dummy data!
+        System.out.println("Start main thread");
+        SimpleThread thread = new SimpleThread();
+        thread.start();
+
     }
 }

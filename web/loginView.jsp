@@ -31,6 +31,7 @@
                 <input class="input-login" type="password" name="password" placeholder="Password" value="password">
                 <br>
                 <input class="submit-login" type="submit" value="Accedi">
+                <br>
             </form>
 
             <%
@@ -43,6 +44,8 @@
 
                 session.invalidate();
             %>
+
+            <a href="loadData.jsp">Carica guasti</a>
 
         </div>
 

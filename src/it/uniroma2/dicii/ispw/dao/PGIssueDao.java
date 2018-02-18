@@ -133,7 +133,7 @@ public class PGIssueDao implements IssueDao {
                     "abstract_feature.feature_id AS feature_id, " +
                     "concrete_feature.feature_id AS concrete_id " +
                     "FROM issue " +
-                    "JOIN concrete_feature ON (issue.concrete_feature = concrete_feature.classroom_id) " +
+                    "JOIN concrete_feature ON (issue.concrete_feature = concrete_feature.feature_id) " +
                     "JOIN classroom ON (concrete_feature.classroom_id = classroom.classroom_id) " +
                     "JOIN abstract_feature ON (concrete_feature.abstract_id = abstract_feature.feature_id)" +
                     "WHERE issue.issue_id = " + databaseId;
@@ -280,7 +280,7 @@ public class PGIssueDao implements IssueDao {
             String sql = "SELECT concrete_feature.feature_id " +
                     "AS concrete_id, issue.state, issue.data AS date_state " +
                     "FROM issue " +
-                    "JOIN concrete_feature ON (issue.concrete_feature = concrete_feature.classroom_id) " +
+                    "JOIN concrete_feature ON (issue.concrete_feature = concrete_feature.feature_id) " +
                     "JOIN classroom ON (concrete_feature.classroom_id = classroom.classroom_id) " +
                     "JOIN abstract_feature ON (concrete_feature.abstract_id = abstract_feature.feature_id) " +
                     "WHERE concrete_feature.feature_id = " + issue.getFeature().getId() +
