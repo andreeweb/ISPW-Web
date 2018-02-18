@@ -4,6 +4,8 @@ import it.uniroma2.dicii.ispw.enumeration.UserRole;
 import it.uniroma2.dicii.ispw.interfaces.UserDao;
 import it.uniroma2.dicii.ispw.model.User;
 import it.uniroma2.dicii.ispw.exception.DaoException;
+import it.uniroma2.dicii.ispw.utils.Config;
+
 import java.sql.*;
 
 /**
@@ -16,11 +18,6 @@ import java.sql.*;
 
 public class PGUserDao implements UserDao {
 
-    private String USER = "ispw";
-    private String PASS = "ispw";
-    private String DB_URL = "jdbc:postgresql://localhost/ispw_a";
-    private String DRIVER_CLASS_NAME = "org.postgresql.Driver";
-
     public User getUserByUsernameAndPassword(String username, String password) throws DaoException {
 
         Statement stmt = null;
@@ -30,8 +27,11 @@ public class PGUserDao implements UserDao {
         try {
 
             // get connection
-            Class.forName(DRIVER_CLASS_NAME);
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Class.forName(Config.getSingletonInstance().getProperty("dbdriver"));
+            conn = DriverManager.getConnection(
+                    Config.getSingletonInstance().getProperty("dburl"),
+                    Config.getSingletonInstance().getProperty("dbuser"),
+                    Config.getSingletonInstance().getProperty("dbpassword"));
 
             // create statement
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);

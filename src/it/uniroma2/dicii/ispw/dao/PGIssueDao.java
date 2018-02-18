@@ -7,6 +7,7 @@ import it.uniroma2.dicii.ispw.interfaces.IssueDao;
 import it.uniroma2.dicii.ispw.model.Classroom;
 import it.uniroma2.dicii.ispw.model.Feature;
 import it.uniroma2.dicii.ispw.model.Issue;
+import it.uniroma2.dicii.ispw.utils.Config;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
@@ -14,11 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PGIssueDao implements IssueDao {
-
-    private String USER = "ispw";
-    private String PASS = "ispw";
-    private String DB_URL = "jdbc:postgresql://localhost/ispw_a";
-    private String DRIVER_CLASS_NAME = "org.postgresql.Driver";
 
     @Override
     public List<Issue> getIssues() throws DaoException{
@@ -31,8 +27,11 @@ public class PGIssueDao implements IssueDao {
         try {
 
             // get connection
-            Class.forName(DRIVER_CLASS_NAME);
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Class.forName(Config.getSingletonInstance().getProperty("dbdriver"));
+            conn = DriverManager.getConnection(
+                    Config.getSingletonInstance().getProperty("dburl"),
+                    Config.getSingletonInstance().getProperty("dbuser"),
+                    Config.getSingletonInstance().getProperty("dbpassword"));
 
             // create statement
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -120,8 +119,11 @@ public class PGIssueDao implements IssueDao {
         try {
 
             // get connection
-            Class.forName(DRIVER_CLASS_NAME);
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Class.forName(Config.getSingletonInstance().getProperty("dbdriver"));
+            conn = DriverManager.getConnection(
+                    Config.getSingletonInstance().getProperty("dburl"),
+                    Config.getSingletonInstance().getProperty("dbuser"),
+                    Config.getSingletonInstance().getProperty("dbpassword"));
 
             // create statement
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -270,8 +272,11 @@ public class PGIssueDao implements IssueDao {
         try {
 
             // get connection
-            Class.forName(DRIVER_CLASS_NAME);
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Class.forName(Config.getSingletonInstance().getProperty("dbdriver"));
+            conn = DriverManager.getConnection(
+                    Config.getSingletonInstance().getProperty("dburl"),
+                    Config.getSingletonInstance().getProperty("dbuser"),
+                    Config.getSingletonInstance().getProperty("dbpassword"));
 
             // create statement
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -340,8 +345,11 @@ public class PGIssueDao implements IssueDao {
         try {
 
             // get connection
-            Class.forName(DRIVER_CLASS_NAME);
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Class.forName(Config.getSingletonInstance().getProperty("dbdriver"));
+            conn = DriverManager.getConnection(
+                    Config.getSingletonInstance().getProperty("dburl"),
+                    Config.getSingletonInstance().getProperty("dbuser"),
+                    Config.getSingletonInstance().getProperty("dbpassword"));
 
             // create statement
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
