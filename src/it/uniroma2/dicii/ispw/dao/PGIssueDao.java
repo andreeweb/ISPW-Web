@@ -199,68 +199,6 @@ public class PGIssueDao implements IssueDao {
         return issue;
     }
 
-    /*@Override
-    public List<IssueState> getStates() throws DaoException{
-
-        List<IssueState> list = new ArrayList<IssueState>();
-
-        Statement stmt = null;
-        Connection conn = null;
-
-        try {
-
-            // get connection
-            Class.forName(DRIVER_CLASS_NAME);
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-            // create statement
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-
-            // query
-            String sql = "SELECT * FROM fault_state;";
-
-            // execute
-            ResultSet rs = stmt.executeQuery(sql);
-
-            while(rs.next()) {
-
-                // read data
-                list.add(IssueState.valueOf(rs.getString("type")));
-            }
-
-            // Clean-up
-            rs.close();
-            stmt.close();
-            conn.close();
-
-        } catch (ClassNotFoundException e) {
-
-            // driver not found, go out
-            e.printStackTrace();
-            System.exit(1);
-
-        } catch (SQLException e) {
-            throw new DaoException(e.getMessage());
-
-        } finally {
-
-            try {
-
-                if (stmt != null)
-                    stmt.close();
-
-                if (conn != null)
-                    conn.close();
-
-            } catch (SQLException e) {
-                throw new DaoException(e.getMessage());
-            }
-        }
-
-        return list;
-
-    }*/
-
     @Override
     public List<Issue> getIssueStateStory(Issue issue) throws DaoException {
 

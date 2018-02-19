@@ -5,7 +5,6 @@ import it.uniroma2.dicii.ispw.bean.FeatureBean;
 import it.uniroma2.dicii.ispw.bean.IssueBean;
 import it.uniroma2.dicii.ispw.dao.DaoFactory;
 import it.uniroma2.dicii.ispw.enumeration.IssueState;
-import it.uniroma2.dicii.ispw.enumeration.Persistence;
 import it.uniroma2.dicii.ispw.enumeration.UserRole;
 import it.uniroma2.dicii.ispw.exception.DaoException;
 import it.uniroma2.dicii.ispw.interfaces.IssueDao;
@@ -32,7 +31,7 @@ public class IssueManagementController {
      * Filter for technician user role,
      * in this array there are the states accessible to the technician
      */
-    List<IssueState> technicianStateFilter = new ArrayList<>(Arrays.asList(
+    private List<IssueState> technicianStateFilter = new ArrayList<>(Arrays.asList(
             IssueState.CONFIRMED,
             IssueState.TAKEN,
             IssueState.REPAIRING,

@@ -30,15 +30,6 @@ public interface IssueDao {
     Issue getIssue(Integer databaseId) throws DaoException;
 
     /**
-     * Get all possible state for issue from db
-     *
-     * @return List contains Issue State
-     * @throws DaoException error in db
-     * @see IssueState
-     */
-    //List<IssueState> getStates() throws DaoException;
-
-    /**
      * Get all issue state with data
      *
      * @return List contains Issue Object with field state and data
