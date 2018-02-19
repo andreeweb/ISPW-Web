@@ -35,6 +35,7 @@ public class RunnableThread implements Runnable{
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                // lock not acquired yet
             }
 
             System.out.println(Thread.currentThread().getName() + " Acquire lock");
@@ -54,7 +55,7 @@ public class RunnableThread implements Runnable{
                 controller.updateIssue(issueBeans.get(index));
                 issueBeans.remove(index);
 
-            }catch (DaoException | IllegalArgumentException e){
+            }catch (DaoException e){
 
                 e.printStackTrace();
 

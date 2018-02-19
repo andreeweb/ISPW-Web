@@ -23,8 +23,6 @@ public class SimpleThread extends Thread{
 
         System.out.println(Thread.currentThread().getName() + " Start spawn new threads!");
 
-        IssueManagementController controller = new IssueManagementController(UserRole.SECRETARY);
-
         Lock lock = new ReentrantLock();
         ArrayList<IssueBean> data = new ArrayList<IssueBean>();
 
