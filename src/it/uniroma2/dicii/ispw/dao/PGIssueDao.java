@@ -237,7 +237,7 @@ public class PGIssueDao implements IssueDao {
                 // read data
                 Issue is = new Issue();
                 is.setState(IssueState.valueOf(rs.getString("state")));
-                is.setDate(new SimpleDateFormat("dd/MM/yyyy hh:mm").format(rs.getTimestamp("date_state")));
+                is.setDate(new SimpleDateFormat("dd/MM/yyyy HH:mm").format(rs.getTimestamp("date_state")));
 
                 list.add(is);
             }
