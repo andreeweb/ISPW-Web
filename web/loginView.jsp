@@ -26,9 +26,9 @@
             <h4>Effettua la login per entrare nel sistema</h4>
 
             <form method="POST" action="controller/loginViewController.jsp">
-                <input class="input-login" type="text" name="username" placeholder="Username" value="andrea.cerra@me.com">
+                <input class="input-login" type="text" name="username" placeholder="Username">
                 <br>
-                <input class="input-login" type="password" name="password" placeholder="Password" value="password">
+                <input class="input-login" type="password" name="password" placeholder="Password">
                 <br>
                 <input class="submit-login" type="submit" value="Accedi">
                 <br>
