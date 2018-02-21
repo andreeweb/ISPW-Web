@@ -8,7 +8,8 @@ import org.junit.runners.Suite;
 
 @Suite.SuiteClasses({
         IssueManagementControllerTest.class,
-        LoginControllerTest.class
+        LoginControllerTest.class,
+        ParametrizedIssueManagementTest.class
 })
 
 
